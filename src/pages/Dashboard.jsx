@@ -23,10 +23,10 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         const [statsRes, leaderboardRes] = await Promise.all([
-          fetch('http://localhost:5000/api/results/me/stats', {
+          fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/results/me/stats`, {
             headers: { Authorization: `Bearer ${user?.token}` }
           }),
-          fetch('http://localhost:5000/api/results/leaderboard', {
+          fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/results/leaderboard`, {
             headers: { Authorization: `Bearer ${user?.token}` }
           })
         ]);

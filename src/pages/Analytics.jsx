@@ -41,7 +41,7 @@ const Analytics = () => {
     useEffect(() => {
         const fetchAnalytics = async () => {
             try {
-                const res = await fetch('http://localhost:5000/api/results/me/analytics', {
+                const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/results/me/analytics`, {
                     headers: { Authorization: `Bearer ${user?.token}` }
                 });
                 if (res.ok) setData(await res.json());

@@ -41,7 +41,7 @@ const Settings = () => {
                  updatedData.dob = new Date(updatedData.dob).toISOString();
              }
 
-             const res = await fetch(`http://localhost:5000/api/user/profile`, {
+             const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/user/profile`, {
                  method: 'PUT',
                  headers: {
                      'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const Settings = () => {
             return alert("Passwords do not match");
         }
         try {
-             const res = await fetch(`http://localhost:5000/api/user/password`, {
+             const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/user/password`, {
                  method: 'PUT',
                  headers: {
                      'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const Settings = () => {
         toggleTheme(async (themeVal) => {
             if(user) {
                 try {
-                     const res = await fetch(`http://localhost:5000/api/user/preferences`, {
+                     const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/user/preferences`, {
                          method: 'PUT',
                          headers: {
                              'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const Settings = () => {
         setNotifications(newVal);
         if(user) {
              try {
-                 const res = await fetch(`http://localhost:5000/api/user/preferences`, {
+                 const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/user/preferences`, {
                      method: 'PUT',
                      headers: {
                          'Content-Type': 'application/json',

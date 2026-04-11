@@ -9,7 +9,7 @@ const ManageUsers = () => {
   const fetchUsers = async () => {
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetch('http://localhost:5000/api/admin/users', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/admin/users`, {
         headers: { 'Authorization': `Bearer ${user.token}` }
       });
       if (res.ok) {
@@ -30,7 +30,7 @@ const ManageUsers = () => {
     if (!window.confirm("Delete this user?")) return;
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetch(`http://localhost:5000/api/admin/users/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/admin/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user.token}` }
       });

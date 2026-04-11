@@ -16,7 +16,7 @@ const MyQuizzes = () => {
                 if (!user) return navigate("/");
 
                 // Fetch History
-                const resResults = await fetch(`http://localhost:5000/api/results/user/${user._id}`, {
+                const resResults = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/results/user/${user._id}`, {
                     headers: { 'Authorization': `Bearer ${user.token}` }
                 });
                 if (resResults.ok) {
@@ -33,7 +33,7 @@ const MyQuizzes = () => {
                 }
 
                 // Fetch all quizzes to filter saved
-                const resQuizzes = await fetch(`http://localhost:5000/api/quizzes`);
+                const resQuizzes = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/quizzes`);
                 if (resQuizzes.ok) {
                     const allQuizzes = await resQuizzes.json();
                     const savedIds = JSON.parse(localStorage.getItem('savedQuizzes') || '[]');

@@ -11,7 +11,7 @@ const ManageQuizzes = () => {
     const fetchQuizzes = async () => {
       try {
         const user = JSON.parse(localStorage.getItem('user'));
-        const res = await fetch('http://localhost:5000/api/admin/quizzes', {
+        const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/admin/quizzes`, {
           headers: { 'Authorization': `Bearer ${user.token}` }
         });
         if (res.ok) setQuizzes(await res.json());
@@ -26,7 +26,7 @@ const ManageQuizzes = () => {
     if (!window.confirm("Delete this quiz and all its results?")) return;
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetch(`http://localhost:5000/api/admin/quizzes/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/admin/quizzes/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${user.token}` }
       });

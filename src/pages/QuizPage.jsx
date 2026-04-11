@@ -24,7 +24,7 @@ const QuizPage = () => {
     useEffect(() => {
         const fetchQuiz = async () => {
             try {
-                const res = await fetch(`http://localhost:5000/api/quizzes/${quizId}`);
+                const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/quizzes/${quizId}`);
                 if (res.ok) {
                     const data = await res.json();
                     setQuiz(data);
@@ -120,7 +120,7 @@ const QuizPage = () => {
         try {
             const user = JSON.parse(localStorage.getItem("user"));
             if (!user) return;
-            await fetch('http://localhost:5000/api/results/submit', {
+            await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/results/submit`, {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',

@@ -21,7 +21,7 @@ const QuizList = () => {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/quizzes");
+                const res = await fetch(`${import.meta.env.VITE_API_URL || `${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}`}/api/quizzes`);
                 const data = await res.json();
                 if (res.ok) {
                     setQuizzes(data);

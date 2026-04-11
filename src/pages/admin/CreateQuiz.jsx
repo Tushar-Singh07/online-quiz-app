@@ -33,7 +33,7 @@ const CreateQuiz = () => {
 
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetch('http://localhost:5000/api/quizzes/generate', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/quizzes/generate`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -110,7 +110,7 @@ const CreateQuiz = () => {
 
     try {
       const user = JSON.parse(localStorage.getItem('user'));
-      const res = await fetch('http://localhost:5000/api/quizzes', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL ?? (import.meta.env.PROD ? "" : "http://localhost:5000")}/api/quizzes`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
